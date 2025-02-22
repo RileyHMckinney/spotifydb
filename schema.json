@@ -1,0 +1,34 @@
+{
+    "artists": {
+      "id": "VARCHAR(255) PRIMARY KEY",
+      "name": "TEXT NOT NULL",
+      "popularity": "INTEGER",
+      "followers": "INTEGER",
+      "image_url": "TEXT",
+      "uri": "VARCHAR(255)"
+    },
+    "genres": {
+      "id": "SERIAL PRIMARY KEY",
+      "name": "TEXT UNIQUE NOT NULL"
+    },
+    "artist_genre": {
+      "artist_id": "VARCHAR(255) REFERENCES artists(id)",
+      "genre_id": "INTEGER REFERENCES genres(id)",
+      "primary_key": ["artist_id", "genre_id"]
+    },
+    "tracks": {
+      "id": "VARCHAR(255) PRIMARY KEY",
+      "name": "TEXT NOT NULL",
+      "popularity": "INTEGER",
+      "duration_ms": "INTEGER",
+      "explicit": "BOOLEAN",
+      "release_date": "DATE",
+      "uri": "VARCHAR(255)"
+    },
+    "track_artist": {
+      "track_id": "VARCHAR(255) REFERENCES tracks(id)",
+      "artist_id": "VARCHAR(255) REFERENCES artists(id)",
+      "primary_key": ["track_id", "artist_id"]
+    }
+  }
+  
